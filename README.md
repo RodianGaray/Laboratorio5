@@ -30,19 +30,13 @@ El documento fue desarrollado en Overleaf con citas y referencias, abordando los
 Controlar y visualizar un cuadrúpedo UR5 usando PyBullet, desplegándolo dentro de un contenedor Docker.
 
 ### Pasos
-📁 Crear el Dockerfile
-FROM python:3.10-slim
+#### Crear el Dockerfile
 
-WORKDIR /app
-COPY . /app
+imagen
 
-RUN pip install --no-cache-dir pybullet numpy matplotlib
+#### Construir y ejecutar la imagen
 
-CMD ["python", "cuadrupedo_ur5.py"]
-
-### Construir y ejecutar la imagen
-docker build -t ur5-pybullet .
-docker run --rm -it ur5-pybullet
+Imagen
 
 ### Resultados
 
@@ -58,39 +52,43 @@ Se validó el control básico de movimiento.
 Implementar un robot TurtleBot3 con sensor LIDAR, usando ROS Noetic y SLAM (gmapping) para crear un mapa en tiempo real dentro de Docker.
 
 ### Estructura del Dockerfile
-FROM osrf/ros:noetic-desktop-full
+imagen
 
 ### Instalar TurtleBot3 y SLAM
-RUN apt-get update && apt-get install -y \
-    ros-noetic-turtlebot3 \
-    ros-noetic-turtlebot3-simulations \
-    ros-noetic-slam-gmapping
+
+imagen 
 
 ### Configurar entorno
-RUN echo "export TURTLEBOT3_MODEL=burger" >> ~/.bashrc
+
+Imagen 
 
 ### Script de inicio
-CMD ["bash", "-c", "source /opt/ros/noetic/setup.bash && roslaunch turtlebot3_gazebo turtlebot3_world.launch"]
+
+Imagen
 
 🔹 Ejecución del Sistema
 🧩 Terminal 1 — Simulación (Gazebo)
+```
 docker run -it --rm \
     -e DISPLAY=$DISPLAY \
     -v /tmp/.X11-unix:/tmp/.X11-unix \
     --network host \
     --name slam-bot \
     turtlebot3-slam
-
+```
 🧠 Terminal 2 — SLAM (Dentro del contenedor)
+```
 docker exec -it slam-bot bash -c \
 "source /opt/ros/noetic/setup.bash && roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping"
-
+```
 🎮 Terminal 3 — Teleoperación
+```
 docker exec -it slam-bot bash -c \
 "source /opt/ros/noetic/setup.bash && roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch"
-
+```
 🗺️ Terminal 4 — Visualización del mapa (RViz)
+```
 docker exec -it slam-bot bash -c \
 "source /opt/ros/noetic/setup.bash && rosrun rviz rviz -d /opt/ros/noetic/share/turtlebot3_slam/rviz/turtlebot3_gmapping.rviz"
-
+```
 ### Resultados 
