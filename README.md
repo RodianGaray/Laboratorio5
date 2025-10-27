@@ -90,7 +90,7 @@ Para ejecutar los ejemplos prácticos se recomienda tener instaladas las siguien
    ```
    git clone https://github.com/usuario/nombre-del-repositorio.git
    cd nombre-del-repositorio
-    ```bash
+   
 2. Ejecutar el primer ejemplo (ROS + MoveIt + Gazebo):
 
  ```
