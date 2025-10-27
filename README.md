@@ -112,15 +112,15 @@ Controlar y visualizar un cuadrúpedo UR5 usando PyBullet, desplegándolo dentro
 ### Pasos
 #### Crear el Dockerfile
 
-imagen
+![Laboratorio5](1.png)  
 
 #### Construir y ejecutar la imagen
 
-Imagen
+![Laboratorio5](2.png)  
 
 ### Resultados
 
-El cuadrúpedo se visualiza correctamente en la simulación PyBullet.
+![Laboratorio5](4.png)  
 
 El despliegue se ejecuta desde Docker (docker run --rm).
 
@@ -131,44 +131,15 @@ Se validó el control básico de movimiento.
 
 Implementar un robot TurtleBot3 con sensor LIDAR, usando ROS Noetic y SLAM (gmapping) para crear un mapa en tiempo real dentro de Docker.
 
-### Estructura del Dockerfile
-imagen
+### Pasos
+#### Crear el Dockerfile
 
-### Instalar TurtleBot3 y SLAM
+![Laboratorio5](5.png)  
 
-imagen 
+#### Construir y ejecutar la imagen
 
-### Configurar entorno
+![Laboratorio5](6.png)  
 
-Imagen 
+### Resultados
 
-### Script de inicio
-
-Imagen
-
-🔹 Ejecución del Sistema
-🧩 Terminal 1 — Simulación (Gazebo)
-```
-docker run -it --rm \
-    -e DISPLAY=$DISPLAY \
-    -v /tmp/.X11-unix:/tmp/.X11-unix \
-    --network host \
-    --name slam-bot \
-    turtlebot3-slam
-```
-🧠 Terminal 2 — SLAM (Dentro del contenedor)
-```
-docker exec -it slam-bot bash -c \
-"source /opt/ros/noetic/setup.bash && roslaunch turtlebot3_slam turtlebot3_slam.launch slam_methods:=gmapping"
-```
-🎮 Terminal 3 — Teleoperación
-```
-docker exec -it slam-bot bash -c \
-"source /opt/ros/noetic/setup.bash && roslaunch turtlebot3_teleop turtlebot3_teleop_key.launch"
-```
-🗺️ Terminal 4 — Visualización del mapa (RViz)
-```
-docker exec -it slam-bot bash -c \
-"source /opt/ros/noetic/setup.bash && rosrun rviz rviz -d /opt/ros/noetic/share/turtlebot3_slam/rviz/turtlebot3_gmapping.rviz"
-```
-### Resultados 
+![Laboratorio5](7.png)  
